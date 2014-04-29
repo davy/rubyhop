@@ -67,7 +67,7 @@ class TestPlayer < MiniTest::Test
     assert_equal 266, @player.x
     assert_equal 300, @player.y
     assert_equal true, @player.alive
-    assert_equal 'rubyguy-rise.png', @player.image.filename
+    assert @player.image.filename.match 'rubyguy-rise.png'
   end
 
   def test_hop
@@ -81,13 +81,13 @@ class TestPlayer < MiniTest::Test
     3.times do
       @player.update
     end
-    assert_equal 'rubyguy-fall.png', @player.image.filename
+    assert @player.image.filename.match 'rubyguy-fall.png'
   end
 
   def test_die_bang
     @player.die!
     assert_equal false, @player.alive
-    assert_equal 'rubyguy-dead.png', @player.image.filename
+    assert @player.image.filename.match 'rubyguy-dead.png'
   end
 
   def test_offscreen_eh

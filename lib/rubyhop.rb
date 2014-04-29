@@ -4,31 +4,11 @@ require "rubyhop/level"
 require "rubyhop/player"
 require "rubyhop/hoop"
 
-def get_my_file file
-  "#{File.dirname(__FILE__)}/rubyhop/assets/#{file}"
-end
-
-class Sound < Gosu::Sample
-  def initialize filename
-    super Rubyhop.instance, get_my_file(filename)
-  end
-end
-
-class Song < Gosu::Song
-  def initialize filename
-    super Rubyhop.instance, get_my_file(filename)
-  end
-end
-
 class Image < Gosu::Image
   attr_accessor :filename
-  def initialize filename
-    @filename = filename
-    super Rubyhop.instance, get_my_file(filename)
-  end
-
-  def self.from_text message, font = Gosu::default_font_name, size = 24
-    super Rubyhop.instance, message, font, size
+  def initialize window, filename
+    @filename = filename # helps with testing
+    super window, filename
   end
 end
 
@@ -40,19 +20,19 @@ class Rubyhop < Gosu::Window
   attr_reader :time, :sounds, :score, :high_score
 
   def self.image filename
-    Image.new filename
+    Image.new Rubyhop.instance, get_my_file(filename)
   end
 
   def self.text_image message, font = Gosu::default_font_name, size = 24
-    Image.from_text message, font, size
+    Gosu::Image.from_text Rubyhop.instance, message, font, size
   end
 
   def self.song filename
-    Song.new filename
+    Gosu::Song.new Rubyhop.instance, get_my_file(filename)
   end
 
   def self.sound filename
-    Sound.new filename
+    Gosu::Sample.new Rubyhop.instance, get_my_file(filename)
   end
 
   def self.score_font
@@ -129,5 +109,11 @@ class Rubyhop < Gosu::Window
   def draw
     @background.draw 0, 0, 0
     @level.draw
+  end
+
+  private
+
+  def get_my_file file
+    "#{File.dirname(__FILE__)}/rubyhop/assets/#{file}"
   end
 end
