@@ -1,29 +1,31 @@
-= rubyhop
+# rubyhop
 
-http://blowmage.com/rubyhop
+* http://blowmage.com/rubyhop
 
-== DESCRIPTION:
+## DESCRIPTION:
 
 Super awesome Ruby-themed game
+
+## INSTALL:
 
     $ gem install rubyhop
     $ rubyhop
 
-== DEVELOPERS:
+## DEVELOPERS:
 
 After checking out the source, run:
 
-  $ gem install hoe
-  $ rake newb
+    $ gem install hoe
+    $ rake newb
 
 This task will install any missing dependencies, run the tests/specs,
 and generate the RDoc.
 
 After making changes, run the game:
 
-  $ rake run
+    $ rake run
 
-== LICENSES
+## LICENSES
 
 All source code is copyright MIT license. All rights reserved for graphic and audio assets.
 
