@@ -41,6 +41,14 @@ class Level
   def draw
     raise "Must override"
   end
+
+  def button_down id
+    # override this!
+  end
+
+  def button_up id
+    # override this!
+  end
 end
 
 

@@ -114,11 +114,11 @@ class Rubyhop < Gosu::Window
   end
 
   def button_down id
-    @level.button_down id if @level.respond_to? :button_down
+    @level.button_down id
   end
 
   def button_up id
-    @level.button_up id if @level.respond_to? :button_up
+    @level.button_up id
   end
 
   def update
